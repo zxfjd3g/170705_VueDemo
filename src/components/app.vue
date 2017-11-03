@@ -1,51 +1,49 @@
 <template>
-  <div>
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对Vue的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-      <!--<add :addComment="addComment"/>-->
-      <add :add-comment="addComment"/>
-      <list :comments="comments" :removeComment="removeComment"/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <todo-header :addTodo="addTodo"/>
+      <todo-main  :todos="todos"/>
+      <todo-footer />
     </div>
   </div>
 </template>
 
 <script>
-  import add from './add.vue'
-  import list from './list.vue'
+  import header from './header.vue'
+  import main from './main.vue'
+  import footer from './footer.vue'
 
   export default {
     data () {
       return {
-        comments: [
-          {username: 'Tom', content: 'just so so'},
-          {username: 'Jack', content: 'so easy'},
-          {username: 'Bob', content: '说啥啊....'}
+        todos: [
+          {title: '上课', complete: false},
+          {title: '睡觉', complete: true},
         ]
       }
     },
-    components: {
-      add,
-      list
-    },
+
     methods: {
-      addComment(comment) {
-        this.comments.unshift(comment)
-      },
-      removeComment(index) {
-        this.comments.splice(index, 1)
+      addTodo (todo) {
+        this.todos.unshift(todo)
       }
+    },
+    components: {
+      'todo-header': header,
+      'todo-main': main,
+      'todo-footer': footer
     }
   }
 </script>
 
 <style>
-
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>
