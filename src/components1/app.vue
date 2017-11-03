@@ -1,21 +1,14 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <!--<todo-header v-on:addTodo="addTodo"/>-->
-      <todo-header ref="header"/>
-      <todo-main  :todos="todos"/>
-      <todo-footer :selectAll="selectAll" :todos="todos">
-        <span slot="size">
-          <span>完成{{completeSize2}}</span> / 全部{{todos.length}}
-        </span>
-        <button slot="clear" class="btn btn-danger" v-show="completeSize2" @click="clearcompleteTodos">清除已完成任务</button>
-      </todo-footer>
+      <todo-header :addTodo="addTodo"/>
+      <todo-main  :todos="todos" :deleteTodo="deleteTodo"/>
+      <todo-footer :clearcompleteTodos="clearcompleteTodos" :selectAll="selectAll" :todos="todos"/>
     </div>
   </div>
 </template>
 
 <script>
-  import PubSub from 'pubsub-js'
   import header from './header.vue'
   import main from './main.vue'
   import footer from './footer.vue'
@@ -31,13 +24,6 @@
     mounted () {
       // 读取保存在local中的数据    json格式字符串
       this.todos = storageUtils.getTodos()
-      // 绑定自定义的事件监听
-      // this.$on('addTodo', this.addTodo)
-      this.$refs.header.$on('addTodo', this.addTodo)
-      // 订阅消息
-      PubSub.subscribe('deleteTodo', (msg, index) => {
-        this.deleteTodo(index)
-      })
     },
 
     methods: {
@@ -54,12 +40,6 @@
         this.todos.forEach(todo => {
           todo.complete = check
         })
-      }
-    },
-
-    computed: {
-      completeSize2 () {
-        return this.todos.filter(todo=>todo.complete).length
       }
     },
 

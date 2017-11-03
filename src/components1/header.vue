@@ -1,6 +1,6 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认2"
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认"
            v-model="inputTodo" @keyup.enter="addItem"/>
   </div>
 </template>
@@ -9,7 +9,7 @@
 
   export default {
     props: {
-      // addTodo: Function
+      addTodo: Function
     },
     data () {
       return {
@@ -25,10 +25,7 @@
           complete: false
         }
         // 添加todo
-        // this.addTodo(todo)
-        // 触发一个addTodo的事件
-        this.$emit('addTodo', todo)
-
+        this.addTodo(todo)
         // 清除输入
         this.inputTodo = ''
       }

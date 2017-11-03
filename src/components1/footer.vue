@@ -3,10 +3,11 @@
     <label>
       <input type="checkbox" v-model="isAllComplete"/>
     </label>
-    <slot name="size"></slot>
-    <slot name="clear"></slot>
-
-    </div>
+    <span>
+          <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
+        </span>
+    <button class="btn btn-danger" v-show="completeSize" @click="clearcompleteTodos">清除已完成任务</button>
+  </div>
 </template>
 
 <script>
@@ -15,7 +16,7 @@
     props: {
       todos: Array,
       selectAll: Function,
-      // clearcompleteTodos: Function
+      clearcompleteTodos: Function
     },
 
     computed: {

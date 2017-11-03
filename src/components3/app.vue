@@ -4,12 +4,7 @@
       <!--<todo-header v-on:addTodo="addTodo"/>-->
       <todo-header ref="header"/>
       <todo-main  :todos="todos"/>
-      <todo-footer :selectAll="selectAll" :todos="todos">
-        <span slot="size">
-          <span>完成{{completeSize2}}</span> / 全部{{todos.length}}
-        </span>
-        <button slot="clear" class="btn btn-danger" v-show="completeSize2" @click="clearcompleteTodos">清除已完成任务</button>
-      </todo-footer>
+      <todo-footer :clearcompleteTodos="clearcompleteTodos" :selectAll="selectAll" :todos="todos"/>
     </div>
   </div>
 </template>
@@ -54,12 +49,6 @@
         this.todos.forEach(todo => {
           todo.complete = check
         })
-      }
-    },
-
-    computed: {
-      completeSize2 () {
-        return this.todos.filter(todo=>todo.complete).length
       }
     },
 
