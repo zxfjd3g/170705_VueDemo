@@ -4,14 +4,15 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <h1>请发表对React的评论</h1>
+            <h1>请发表对Vue的评论</h1>
           </div>
         </div>
       </div>
     </header>
     <div class="container">
-      <add :addComment="addComment"/>
-      <list :comments="comments"/>
+      <!--<add :addComment="addComment"/>-->
+      <add :add-comment="addComment"/>
+      <list :comments="comments" :removeComment="removeComment"/>
     </div>
   </div>
 </template>

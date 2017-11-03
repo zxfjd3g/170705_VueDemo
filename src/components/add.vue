@@ -2,7 +2,7 @@
   <div class="col-md-4">
     <form class="form-horizontal">
       <div class="form-group">
-        <label>用户名</label>
+        <label>用户名2</label>
         <input type="text" class="form-control" placeholder="用户名" v-model="username">
       </div>
       <div class="form-group">
