@@ -17,7 +17,9 @@
         <div class="panel">
           <div class="panel-body">
             <!--用来显示当前路由组件-->
-            <router-view></router-view>
+            <keep-alive>
+              <router-view msg="abc"></router-view>
+            </keep-alive>
           </div>
         </div>
       </div>
@@ -26,7 +28,10 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    //window.location = 'http://www.baidu.com'
+    // window.location = '/test.html'  <a href='/test.html'>
+  }
 </script>
 
 <style>
